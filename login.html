@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>TechHub Elektronik - Giriş</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --siyah: #1a1a1a;
+            --beyaz: #ffffff;
+            --sari: #FFD700;
+            --turuncu: #0dfc05;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffc519 0%, #e5ff00 100% );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            filter: contrast(400%);
+        }
+
+        .login-container {
+            background-color: var(--beyaz);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 400px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .logo {
+            color: var(--siyah);
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--sari);
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--turuncu);
+        }
+
+        .login-button {
+            background-color: var(--siyah);
+            color: var(--beyaz);
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: var(--turuncu);
+        }
+
+        .forgot-password {
+            color: var(--siyah);
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: var(--turuncu);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo"><i class="fas fa-laptop"></i>TechHub Elektronik</div>
+        
+        <form id="loginForm" class="login-form">
+            <div class="input-group">
+                <input type="email" id="email" placeholder="E-posta Adresiniz" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Şifreniz" required>
+            </div>
+            
+            <button type="submit" class="login-button">Giriş Yap</button>
+            
+            <a href="#" class="forgot-password">Şifremi Unuttum</a>
+            
+            <div class="signup-link">
+                Hesabınız yok mu? <a href="#" id="signupLink">Kayıt Ol</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        // SHA-256 Hash Fonksiyonu
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+    
+        // Kullanıcı bilgilerini txt dosyasına kaydetme
+        async function saveUserToFile(email, password) {
+            // Şifreyi hash'le
+            const hashedPassword = await hashPassword(password);
+            
+            // Kullanıcı bilgilerini formatla
+            const userData = `Email: ${email}\nPasswordHash: ${hashedPassword}\n---\n`;
+            
+            try {
+                // Dosyayı oluştur veya güncelle
+                const response = await fetch('saveUser.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `email=${encodeURIComponent(email)}&passwordHash=${encodeURIComponent(hashedPassword)}`
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Kullanıcı kaydedilemedi');
+                }
+    
+                alert('Kayıt başarılı!');
+            } catch (error) {
+                console.error('Hata:', error);
+                alert('Kayıt sırasında bir hata oluştu.');
+            }
+        }
+    
+        // Giriş doğrulama
+        async function validateLogin(email, password) {
+            try {
+                // Şifreyi hash'le
+                const hashedPassword = await hashPassword(password);
+                
+                // Kullanıcı doğrulama isteği
+                const response = await fetch('validateUser.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `email=${encodeURIComponent(email)}&passwordHash=${encodeURIComponent(hashedPassword)}`
+                });
+    
+                const result = await response.json();
+    
+                if (result.valid) {
+                    // Giriş başarılı
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Geçersiz kullanıcı adı veya şifre');
+                }
+            } catch (error) {
+                console.error('Hata:', error);
+                alert('Giriş sırasında bir hata oluştu.');
+            }
+        }
+    
+        // Kayıt Ol Event Listener
+        document.getElementById('signupLink').addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            if(email && password) {
+                await saveUserToFile(email, password);
+            } else {
+                alert('Lütfen tüm alanları doldurunuz.');
+            }
+        });
+    
+        // Giriş Formu Event Listener
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            if(email && password) {
+                await validateLogin(email, password);
+            } else {
+                alert('Lütfen tüm alanları doldurunuz.');
+            }
+        });
+    </script>
+</body>
+</html>

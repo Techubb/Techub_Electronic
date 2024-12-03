@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog ve Satın Alma</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #ffc519 0%, #e5ff00 100%);
+            color: rgb(0, 0, 0);
+            padding: 80px 0;
+        }
+        model-viewer {
+            width: 100%;
+            height: 200px;
+            background-color: #ffffff;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left:  50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        .model-viewer-container {
+            position: relative;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #ddd;
+            position: absolute;
+            bottom: 0;
+            border-radius: 0 0 8px 8px;
+        }
+        .progress-bar .update-bar {
+            height: 100%;
+            background: #007bff;
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 0 0 8px 8px;
+        }
+        .navbar {
+            background: rgba(44, 62, 80, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+        }
+        .dropdown-menu :hover{
+            background: linear-gradient(135deg, #c507eb 0%,#c20303 25%,#3807eb 50%,#07eb07 75%, #e5ff00 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            
+            <a class="navbar-brand" href="#"><i class="fas fa-laptop"></i> TechHub Elektronik</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link deactive" href="login.html" style="color: #00ff40;"><i class="fas fa-user"></i> Giriş Yap / </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="login.html" style="color: yellow;"><i class="fas fa-user"></i>Kayıt Ol</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-laptop"></i> Ürünler
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="katalog.html">Bilgisayarlar</a></li>
+                            <li><a class="dropdown-item" href="katalog.html">Akıllı Telefonlar</a></li>
+                            <li><a class="dropdown-item" href="katalog.html">Tabletler</a></li>
+                            <li><a class="dropdown-item" href="katalog.html">Aksesuarlar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="hakkında.html"><i class="fas fa-info-circle"></i> Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> İletişim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="payment.html"><i class="fas fa-credit-card"></i> Ödeme</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="katalog.html"><i class="fas fa-store"></i> Katalog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sepet.html"><i class="fas fa-shopping-cart"></i> Sepetim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-4">ÜRÜN KATALOG</h1>
+            <p class="lead">ÜRÜNLERİMİZİ İNCELEMEYİ UNUTMAYIN</p>
+        </div>
+    </section>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Ürün Kataloğu</h1>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-1">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        
+                        <model-viewer
+                            poster="https://store.store images.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg"
+                            src="models/Mobile phone.glb"
+                            alt="iPhone 13"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30 deg"
+                            max-camera-orbit="auto 100deg auto"
+                            min-camera-orbit="auto 0deg auto"
+                            loading="lazy"
+                            id="viewer-1">
+                            
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">iPhone 13</h5>
+                        <p class="card-text">Apple iPhone 13</p>
+                        <p class="card-text"><strong>Fiyat: 100 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="1">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-2">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        
+                        <model-viewer
+                            poster="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp14-spacegray-select-202301?wid=904&hei=840&fmt=jpeg"
+                            src="models/Laptop - Windows menu.glb"
+                            alt="MacBook Pro"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30 deg"
+                            max-camera-orbit="auto 100deg auto"
+                            min-camera-orbit="auto 0deg auto"
+                            loading="lazy"
+                            id="viewer-2">
+                            
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">MacBook Pro</h5>
+                        <p class="card-text">Apple MacBook Pro M1</p>
+                        <p class="card-text"><strong>Fiyat: 200 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="2">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-3">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        
+                        <model-viewer
+                            poster="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQD83?wid=1144&hei=1144&fmt=jpeg"
+                            src="models/Sedan car.glb"
+                            alt="Havalı araba"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30 deg"
+                            max-camera-orbit="auto 100deg auto"
+                            min-camera-orbit="auto 0deg auto"
+                            loading="lazy"
+                            id="viewer-3">
+                            
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class=" update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">Air Pods</h5>
+                        <p class="card-text">Özel Tasarım havalı kulaklık</p>
+                        <p class="card-text"><strong>Fiyat: 300 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="3">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sepete ekleme fonksiyonu
+        function addToCart(productId, productName, productPrice, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingProductIndex = cart.findIndex(product => product.id === productId);
+            if (existingProductIndex > -1) {
+                cart[existingProductIndex].quantity += quantity;
+            } else {
+                cart.push({ id: productId, name: productName, price: productPrice, quantity: quantity });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} sepete eklendi!`);
+        }
+
+        // Form gönderimi için event listener ekleyin
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Formun normal gönderimini engelle
+                const productId = parseInt(this.querySelector('input[name="product_id"]').value);
+                const productName = this.parentElement.querySelector('.card-title').innerText;
+                const productPrice = parseFloat(this.parentElement.querySelector('.card-text strong').innerText.replace('Fiyat: ', '').replace(' TL', ''));
+                const quantity = parseInt(this.querySelector('input[name="quantity"]').value);
+                addToCart(productId, productName, productPrice, quantity);
+            });
+        });
+    </script>
+</body>
+</html>

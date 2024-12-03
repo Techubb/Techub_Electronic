@@ -20,7 +20,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #ffc519 0%, #e5ff00 100% );
+            background: linear-gradient(135deg, #ffc519 0%, #e5ff00 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -133,61 +133,29 @@
             return hashHex;
         }
     
-        // Kullanıcı bilgilerini txt dosyasına kaydetme
-        async function saveUserToFile(email, password) {
-            // Şifreyi hash'le
+        // Kullanıcı bilgilerini yerel depolamaya kaydetme
+        async function saveUser ToLocalStorage(email, password) {
             const hashedPassword = await hashPassword(password);
-            
-            // Kullanıcı bilgilerini formatla
-            const userData = `Email: ${email}\nPasswordHash: ${hashedPassword}\n---\n`;
-            
-            try {
-                // Dosyayı oluştur veya güncelle
-                const response = await fetch('saveUser.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `email=${encodeURIComponent(email)}&passwordHash=${encodeURIComponent(hashedPassword)}`
-                });
-    
-                if (!response.ok) {
-                    throw new Error('Kullanıcı kaydedilemedi');
-                }
-    
-                alert('Kayıt başarılı!');
-            } catch (error) {
-                console.error('Hata:', error);
-                alert('Kayıt sırasında bir hata oluştu.');
-            }
+            const userData = { email: email,
+                passwordHash: hashedPassword
+            };
+            localStorage.setItem(email, JSON.stringify(userData));
+            alert('Kayıt başarılı!');
         }
     
         // Giriş doğrulama
         async function validateLogin(email, password) {
-            try {
-                // Şifreyi hash'le
+            const userData = JSON.parse(localStorage.getItem(email));
+            if (userData) {
                 const hashedPassword = await hashPassword(password);
-                
-                // Kullanıcı doğrulama isteği
-                const response = await fetch('validateUser.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `email=${encodeURIComponent(email)}&passwordHash=${encodeURIComponent(hashedPassword)}`
-                });
-    
-                const result = await response.json();
-    
-                if (result.valid) {
+                if (userData.passwordHash === hashedPassword) {
                     // Giriş başarılı
                     window.location.href = 'index.html';
                 } else {
                     alert('Geçersiz kullanıcı adı veya şifre');
                 }
-            } catch (error) {
-                console.error('Hata:', error);
-                alert('Giriş sırasında bir hata oluştu.');
+            } else {
+                alert('Geçersiz kullanıcı adı veya şifre');
             }
         }
     
@@ -199,7 +167,7 @@
             const password = document.getElementById('password').value;
     
             if(email && password) {
-                await saveUserToFile(email, password);
+                await saveUser ToLocalStorage(email, password);
             } else {
                 alert('Lütfen tüm alanları doldurunuz.');
             }

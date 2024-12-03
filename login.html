@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <title>TechHub Elektronik - Giriş</title>
@@ -31,7 +32,7 @@
         .login-container {
             background-color: var(--beyaz);
             border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             width: 400px;
             padding: 40px;
             text-align: center;
@@ -100,28 +101,30 @@
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
-        <div class="logo"><i class="fas fa-laptop"></i>TechHub Elektronik</div>
-        
+        <div class="logo"><i class="fas fa-laptop"></i> TechHub Elektronik</div>
+
         <form id="loginForm" class="login-form">
             <div class="input-group">
                 <input type="email" id="email" placeholder="E-posta Adresiniz" required>
             </div>
-            
+
             <div class="input-group">
                 <input type="password" id="password" placeholder="Şifreniz" required>
             </div>
-            
+
             <button type="submit" class="login-button">Giriş Yap</button>
-            
+
             <a href="#" class="forgot-password">Şifremi Unuttum</a>
-            
+
             <div class="signup-link">
                 Hesabınız yok mu? <a href="#" id="signupLink">Kayıt Ol</a>
             </div>
         </form>
     </div>
+
     <script>
         // SHA-256 Hash Fonksiyonu
         async function hashPassword(password) {
@@ -132,60 +135,73 @@
             const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             return hashHex;
         }
-    
+
         // Kullanıcı bilgilerini yerel depolamaya kaydetme
-        async function saveUser ToLocalStorage(email, password) {
+        async function saveUserToLocalStorage(email, password) {
             const hashedPassword = await hashPassword(password);
-            const userData = { email: email,
+            const userData = {
+                email: email,
                 passwordHash: hashedPassword
             };
             localStorage.setItem(email, JSON.stringify(userData));
             alert('Kayıt başarılı!');
         }
-    
-        // Giriş doğrulama
+
+        // Giriş doğrulama ve kullanıcı verisini çekme
         async function validateLogin(email, password) {
-            const userData = JSON.parse(localStorage.getItem(email));
+            const userData = JSON.parse(localStorage.getItem(email));  // E-posta ile kullanıcıyı al
             if (userData) {
+                // Kullanıcının kaydını bulduk, şimdi şifreyi doğrulayalım
                 const hashedPassword = await hashPassword(password);
                 if (userData.passwordHash === hashedPassword) {
                     // Giriş başarılı
-                    window.location.href = 'index.html';
+                    alert('Giriş başarılı!');
+                    
+                    // Kullanıcı bilgilerini konsola yazdırıyoruz
+                    console.log("Giriş yapan kullanıcı bilgileri:");
+                    console.log("E-posta:", userData.email);
+                    console.log("Şifre Hash:", userData.passwordHash);
+
+                    window.location.href = 'index.html';  // Ana sayfaya yönlendir
                 } else {
-                    alert('Geçersiz kullanıcı adı veya şifre');
+                    alert('Geçersiz şifre!');
+                    console.log("Şifre eşleşmedi, giriş başarısız.");
                 }
             } else {
-                alert('Geçersiz kullanıcı adı veya şifre');
+                alert('Kullanıcı bulunamadı!');
+                console.log("E-posta ile kullanıcı bulunamadı:", email);
             }
         }
-    
+
         // Kayıt Ol Event Listener
-        document.getElementById('signupLink').addEventListener('click', async function(e) {
+        document.getElementById('signupLink').addEventListener('click', async function (e) {
             e.preventDefault();
-            
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-    
-            if(email && password) {
-                await saveUser ToLocalStorage(email, password);
+
+            if (email && password) {
+                await saveUserToLocalStorage(email, password);  // Kullanıcı kaydını yap
             } else {
                 alert('Lütfen tüm alanları doldurunuz.');
             }
         });
-    
+
         // Giriş Formu Event Listener
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-    
-            if(email && password) {
-                await validateLogin(email, password);
+
+            if (email && password) {
+                await validateLogin(email, password);  // Giriş doğrulama işlemini yap
             } else {
                 alert('Lütfen tüm alanları doldurunuz.');
+                console.log("Eksik bilgi: E-posta veya şifre girilmedi");
             }
         });
     </script>
 </body>
+
 </html>

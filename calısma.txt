@@ -1,0 +1,37 @@
+html Aynur Öztürk
+Katalog bölümü javaScript ve veritebanı Nezaket Kalkan
+Arayüz, logo ,menü , css Seda Nur Aydın
+
+1. Planlama ve Tasarım
+Gereksinimleri Belirleme: Projenizin gereksinimlerini net bir şekilde tanımlayın. Kullanıcı ihtiyaçlarını, işlevselliği ve hedefleri belirleyin.
+
+Mimari Tasarım: Yazılımın mimarisini planlayın. Hangi teknolojileri kullanacaksınız? Hangi bileşenler birbirleriyle nasıl etkileşime girecek?
+
+Prototip Oluşturma: İlk tasarımlarınızı ve kullanıcı arayüzü prototiplerinizi oluşturun. Bu, projenizin yönünü belirlemenize yardımcı olur.
+
+2. Kod Yazma
+Modülerlik: Kodunuzu modüler hale getirin. Her bir bileşeni veya fonksiyonu belirli bir işlev için tasarlayın. Bu, kodun yeniden kullanılabilirliğini artırır.
+
+Temiz Kod Yazma: Kodunuzu okunabilir ve anlaşılır hale getirin. Anlamlı değişken ve fonksiyon isimleri kullanın. Yorumlar ekleyerek kodunuzu açıklayın.
+
+Versiyon Kontrolü: Git gibi bir versiyon kontrol sistemi kullanarak kod değişikliklerinizi takip edin. Bu, ekip içinde işbirliğini kolaylaştırır ve geçmişe dönük değişiklikleri yönetmenizi sağlar.
+
+3. Test Etme
+Birlikte Çalışabilirlik Testleri: Yazdığınız kodun diğer bileşenlerle uyumlu çalıştığından emin olun. Entegre testler yaparak sistemin bütünlüğünü kontrol edin.
+
+Otomatik Testler: Unit testler ve entegrasyon testleri yazarak kodunuzun doğru çalıştığını doğrulayın. Bu, hataları erken aşamada tespit etmenize yardımcı olur.
+
+4. Geri Bildirim ve İyileştirme
+Kod İncelemeleri: Ekip arkadaşlarınızla kod incelemeleri yaparak geri bildirim alın. Bu, kod kalitesini artırır ve hataların tespit edilmesine yardımcı olur.
+
+Sürekli İyileştirme: Projenizi sürekli olarak gözden geçirin ve iyileştirin. Kullanıcı geri bildirimlerini dikkate alarak güncellemeler yapın.
+
+5. Dağıtım ve Bakım
+Sürekli Entegrasyon ve Dağıtım (CI/CD): Kodunuzu sürekli olarak entegre edin ve dağıtım süreçlerinizi otomatikleştirin. Bu, yeni özelliklerin ve düzeltmelerin hızlı bir şekilde kullanıma sunulmasını sağlar.
+
+Bakım: Yazılımınızı güncel tutun. Güvenlik güncellemelerini ve hata düzeltmelerini düzenli olarak uygulayın.
+
+6. Belgelendirme
+Kod Belgeleri: Yazdığınız kodun nasıl çalıştığını açıklayan belgeler oluşturun. Bu, yeni geliştiricilerin projeye daha hızlı adapte olmasına yardımcı olur.
+
+Kullanıcı Belgeleri: Kullanıcıların yazılımı nasıl kullanacağını açıklayan belgeler hazırlayın. Bu, kullanıcı deneyimini artırır.

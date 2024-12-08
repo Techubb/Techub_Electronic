@@ -71,7 +71,7 @@
             width: 60px;
             text-align: center;
         }
-        .dropdown-menu :hover{
+        .dropdown-menu :hover {
             background: linear-gradient(135deg, #c507eb 0%,#c20303 25%,#3807eb 50%,#07eb07 75%, #e5ff00 100%);
             color: white;
         }
@@ -97,8 +97,8 @@
                         <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown ```html
-                        ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button ```html
+                        " data-bs-toggle="dropdown">
                             <i class="fas fa-laptop"></i> Ürünler
                         </a>
                         <ul class="dropdown-menu">
@@ -182,8 +182,7 @@
                 <div class="card">
                     <div class="model-viewer-container">
                         <div class="loading" id="loading-2">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually ```html
+                            <div class="spinner-border text-primary" role="status ```html
                                 <span class="visually-hidden">Yükleniyor...</span>
                             </div>
                         </div>
@@ -283,9 +282,10 @@
                             </div>
                         </model-viewer>
                     </div>
-                    <div class=" card-body">
+                    ```html
+                    <div class="card-body">
                         <h5 class="card-title">Redmi Note 13</h5>
-                        <p class="card-text">Android Isletim Sistemi</p>
+                        <p class="card-text">Android İşletim Sistemi</p>
                         <p class="card-text"><strong>Fiyat: 40.000 TL</strong></p>
                         <form method="post">
                             <input type="hidden" name="product_id" value="4">
@@ -321,8 +321,8 @@
                         </model-viewer>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Kablolu Kulaklik</h5>
-                        <p class="card-text">1.25 m uzunlukta kulaklik</p>
+                        <h5 class="card-title">Kablolu Kulaklık</h5>
+                        <p class="card-text">1.25 m uzunlukta kulaklık</p>
                         <p class="card-text"><strong>Fiyat: 500 TL</strong></p>
                         <form method="post">
                             <input type="hidden" name="product_id" value="5">
@@ -359,7 +359,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Samsung Watch Pro</h5>
-                        <p class="card-text">Suya Karsi Dayanikli</p>
+                        <p class="card-text">Suya Karşı Dayanıklı</p>
                         <p class="card-text"><strong>Fiyat: 12.500 TL</strong></p>
                         <form method="post">
                             <input type="hidden" name="product_id" value="6">
@@ -384,7 +384,6 @@
                             auto-rotate
                             camera-controls
                             shadow-intensity="1"
- ```html
                             exposure="1"
                             camera-orbit="45deg 55deg 2.5m"
                             field-of-view="30deg"
@@ -396,8 +395,8 @@
                         </model-viewer>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Telefon Tutacagi</h5>
-                        <p class="card-text">Gelismis titresim engelleyici ozelligi ile</p>
+                        <h5 class="card-title">Telefon Tutacağı</h5>
+                        <p class="card-text">Gelişmiş titreşim engelleyici özelliği ile</p>
                         <p class="card-text"><strong>Fiyat: 7.000 TL</strong></p>
                         <form method="post">
                             <input type="hidden" name="product_id" value="7">
@@ -433,8 +432,8 @@
                         </model-viewer>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Bilgisayar Adaptoru</h5>
-                        <p class="card-text">3 uclu korumali adaptor</p>
+                        <h5 class="card-title">Bilgisayar Adaptörü</h5>
+                        <p class="card-text">3 uçlu korumalı adaptör</p>
                         <p class="card-text"><strong>Fiyat: 800 TL</strong></p>
                         <form method="post">
                             <input type="hidden" name="product_id" value="8">
@@ -470,8 +469,8 @@
                         </model-viewer>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Tasinabili Projektor</h5>
-                        <p class="card-text">Eviniz ve kamp alanlari icin ideal</p>
+                        <h5 class="card-title">Taşınabilir Projektör</h5>
+                        <p class="card-text">Eviniz ve kamp alanları için ideal</p>
                         <p class="card-text"><strong>Fiyat: 9.000 TL</strong></p>
                         <form method="post">
                             <input type="hidden" name="product_id" value="9">
@@ -487,8 +486,7 @@
     <script>
         // Filtreleme fonksiyonu
         document.getElementById('filterInput').addEventListener('input', function() {
-            const filterValue ```javascript
-            = this.value.toLowerCase();
+            const filterValue = this.value.toLowerCase();
             const productCards = document.querySelectorAll('#productList .card');
             productCards.forEach(card => {
                 const title = card.querySelector('.card-title').textContent.toLowerCase();
@@ -525,5 +523,6 @@
             });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

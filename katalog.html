@@ -79,11 +79,8 @@
 </head>
 <body>
 
-    
-
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            
             <a class="navbar-brand" href="#"><i class="fas fa-laptop"></i> TechHub Elektronik</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -100,7 +97,8 @@
                         <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown ```html
+                        ">
                             <i class="fas fa-laptop"></i> Ürünler
                         </a>
                         <ul class="dropdown-menu">
@@ -139,7 +137,8 @@
 
     <div class="container mt-5">
         <h1 class="mb-4">Ürün Kataloğu</h1>
-        <div class="row">
+        <input type="text" id="filterInput" class="form-control mb-4" placeholder="Ürünleri filtrele...">
+        <div class="row" id="productList">
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="model-viewer-container">
@@ -148,9 +147,8 @@
                                 <span class="visually-hidden">Yükleniyor...</span>
                             </div>
                         </div>
-                        
                         <model-viewer
-                            poster="https://store.store images.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg"
+                            poster="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg"
                             src="models/Mobile phone.glb"
                             alt="iPhone 13"
                             auto-rotate
@@ -158,18 +156,16 @@
                             shadow-intensity="1"
                             exposure="1"
                             camera-orbit="45deg 55deg 2.5m"
-                            field-of-view="30 deg"
+                            field-of-view="30deg"
                             max-camera-orbit="auto 100deg auto"
                             min-camera-orbit="auto 0deg auto"
                             loading="lazy"
                             id="viewer-1">
-                            
                             <div class="progress-bar" slot="progress-bar">
                                 <div class="update-bar"></div>
                             </div>
                         </model-viewer>
                     </div>
-                    
                     <div class="card-body">
                         <h5 class="card-title">iPhone 13</h5>
                         <p class="card-text">Apple iPhone 13</p>
@@ -187,10 +183,10 @@
                     <div class="model-viewer-container">
                         <div class="loading" id="loading-2">
                             <div class="spinner-border text-primary" role="status">
+                                <span class="visually ```html
                                 <span class="visually-hidden">Yükleniyor...</span>
                             </div>
                         </div>
-                        
                         <model-viewer
                             poster="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp14-spacegray-select-202301?wid=904&hei=840&fmt=jpeg"
                             src="models/Laptop - Windows menu.glb"
@@ -200,18 +196,16 @@
                             shadow-intensity="1"
                             exposure="1"
                             camera-orbit="45deg 55deg 2.5m"
-                            field-of-view="30 deg"
+                            field-of-view="30deg"
                             max-camera-orbit="auto 100deg auto"
                             min-camera-orbit="auto 0deg auto"
                             loading="lazy"
                             id="viewer-2">
-                            
                             <div class="progress-bar" slot="progress-bar">
                                 <div class="update-bar"></div>
                             </div>
                         </model-viewer>
                     </div>
-                    
                     <div class="card-body">
                         <h5 class="card-title">MacBook Pro</h5>
                         <p class="card-text">Apple MacBook Pro M1</p>
@@ -232,7 +226,6 @@
                                 <span class="visually-hidden">Yükleniyor...</span>
                             </div>
                         </div>
-                        
                         <model-viewer
                             poster="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQD83?wid=1144&hei=1144&fmt=jpeg"
                             src="models/Sedan car.glb"
@@ -242,18 +235,16 @@
                             shadow-intensity="1"
                             exposure="1"
                             camera-orbit="45deg 55deg 2.5m"
-                            field-of-view="30 deg"
+                            field-of-view="30deg"
                             max-camera-orbit="auto 100deg auto"
                             min-camera-orbit="auto 0deg auto"
                             loading="lazy"
                             id="viewer-3">
-                            
                             <div class="progress-bar" slot="progress-bar">
-                                <div class=" update-bar"></div>
+                                <div class="update-bar"></div>
                             </div>
                         </model-viewer>
                     </div>
-                    
                     <div class="card-body">
                         <h5 class="card-title">Air Pods</h5>
                         <p class="card-text">Özel Tasarım havalı kulaklık</p>
@@ -264,12 +255,251 @@
                             <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
                         </form>
                     </div>
-                </div> 
+                </div>
+            </div>
+            <!-- Yeni ürünler -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        <model-viewer
+                            poster="https://example.com/image4.jpg"
+                            src="models/Product4.glb"
+                            alt="Ürün 4"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30deg"
+                            loading="lazy"
+                            id="viewer-4">
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class=" card-body">
+                        <h5 class="card-title">Ürün 4</h5>
+                        <p class="card-text">Açıklama 4</p>
+                        <p class="card-text"><strong>Fiyat: 400 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="4">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        <model-viewer
+                            poster="https://example.com/image5.jpg"
+                            src="models/Product5.glb"
+                            alt="Ürün 5"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30deg"
+                            loading="lazy"
+                            id="viewer-5">
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ürün 5</h5>
+                        <p class="card-text">Açıklama 5</p>
+                        <p class="card-text"><strong>Fiyat: 500 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="5">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-6">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        <model-viewer
+                            poster="https://example.com/image6.jpg"
+                            src="models/Product6.glb"
+                            alt="Ürün 6"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30deg"
+                            loading="lazy"
+                            id="viewer-6">
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ürün 6</h5>
+                        <p class="card-text">Açıklama 6</p>
+                        <p class="card-text"><strong>Fiyat: 600 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="6">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-7">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        <model-viewer
+                            poster="https://example.com/image7.jpg"
+                            src="models/Product7.glb"
+                            alt="Ürün 7"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+ ```html
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30deg"
+                            loading="lazy"
+                            id="viewer-7">
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ürün 7</h5>
+                        <p class="card-text">Açıklama 7</p>
+                        <p class="card-text"><strong>Fiyat: 700 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="7">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-8">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        <model-viewer
+                            poster="https://example.com/image8.jpg"
+                            src="models/Product8.glb"
+                            alt="Ürün 8"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30deg"
+                            loading="lazy"
+                            id="viewer-8">
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ürün 8</h5>
+                        <p class="card-text">Açıklama 8</p>
+                        <p class="card-text"><strong>Fiyat: 800 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="8">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="model-viewer-container">
+                        <div class="loading" id="loading-9">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                        </div>
+                        <model-viewer
+                            poster="https://example.com/image9.jpg"
+                            src="models/Product9.glb"
+                            alt="Ürün 9"
+                            auto-rotate
+                            camera-controls
+                            shadow-intensity="1"
+                            exposure="1"
+                            camera-orbit="45deg 55deg 2.5m"
+                            field-of-view="30deg"
+                            loading="lazy"
+                            id="viewer-9">
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                        </model-viewer>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ürün 9</h5>
+                        <p class="card-text">Açıklama 9</p>
+                        <p class="card-text"><strong>Fiyat: 900 TL</strong></p>
+                        <form method="post">
+                            <input type="hidden" name="product_id" value="9">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">Sepete Ekle</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Filtreleme fonksiyonu
+        document.getElementById('filterInput').addEventListener('input', function() {
+            const filterValue ```javascript
+            = this.value.toLowerCase();
+            const productCards = document.querySelectorAll('#productList .card');
+            productCards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                if (title.includes(filterValue)) {
+                    card.parentElement.style.display = ''; // Göster
+                } else {
+                    card.parentElement.style.display = 'none'; // Gizle
+                }
+            });
+        });
+
         // Sepete ekleme fonksiyonu
         function addToCart(productId, productName, productPrice, quantity) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];

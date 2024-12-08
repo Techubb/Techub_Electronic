@@ -22,54 +22,28 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+-- Ürünler tablosunu oluştur
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    type ENUM('t', 'b', 's', 'k') NOT NULL,
+    image VARCHAR(255) DEFAULT NULL
+);
 
---
--- Tablo için tablo yapısı `aksesuar`
---
-
-CREATE TABLE `aksesuar` (
-  `Samsung Kulaklık` text NOT NULL,
-  `Redmi note 13 Pro` text NOT NULL,
-  `Kablolu Kulaklık` text NOT NULL,
-  `Apple Watch S Gps` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `katalog`
---
-
-CREATE TABLE `katalog` (
-  `Nokıa 2213` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `laptop`
---
-
-CREATE TABLE `laptop` (
-  `Samsung Galaxy z` text NOT NULL,
-  `Monster Gamıng` text NOT NULL,
-  `Samsung  galaxy Z` text NOT NULL,
-  `Asus  15 laptop` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `telefon`
---
-
-CREATE TABLE `telefon` (
-  `iPhone 16` text NOT NULL,
-  `MacBook Pro` text NOT NULL,
-  `Air Pods` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- Ürün verilerini ekle
+INSERT INTO products (name, description, price, type, image) VALUES
+('Iphone 13', 'Ios Isletim Sistemi', 89000.00, 't', ''),
+('Huwai Mate Pro 11', 'Android Isletim Sistemi', 15000.00, 't', ''),
+('Apple Watch Pro', 'Havalı dijital saat', 1350.00, 's', ''),
+('Asus SonicMaster', 'Is ve Home Ofis icin birebir', 12500.00, 'b', ''),
+('Saat Kayışı', 'Saatlerinize hoş ve estetik görünüm vermek için', 125.00, 's', ''),
+('Samsung A14', 'Uzun pil ömürlü saat', 11000.00, 't', ''),
+('Nokia 3310', 'Fıstık kırmaya yarar', 1000.00, 't', ''),
+('Telefon Şarjı Usb-C', 'Samsung veya Xiaomi telefon için', 150.00, 't', ''),
+('Bilgisayar Adaptörü', '3 Uçlu bilgisayar şarj adaptörü', 150.00, 'b', ''),
+('Analog Saat', 'Analog tasarım ve estetik görünüm', 250.00, 's', ''),
+('Samsung G5 Watch', 'Uzun pil ömürlü saat', 1000.00, 's', ''),
+('Kablolu kulaklık', 'Her cihazda kullanılabilir', 50.00, 'k', ''),
+('Lenova Notebook', 'Üstün performanslı oyuncu bilgisayarı', 120000.00, 'b', '');

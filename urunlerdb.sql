@@ -73,6 +73,8 @@ INSERT INTO `products` (`product_id`, `product_name`, `price`, `category_id`) VA
 (11, 'Samsung G5 Watch', 15.50, 4),
 (12, 'Kablolu Kulaklik', 10.00, 3),
 (13, 'Lenova Notebook', 15.50, 1);
+(14, 'samsung a24', 20.50, 2;
+
 
 -- --------------------------------------------------------
 

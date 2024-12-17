@@ -115,12 +115,12 @@
                 <input type="password" id="password" placeholder="Şifreniz" required>
             </div>
 
-            <button type="submit" class="login-button">Giriş Yap</button>
+            <button type="submit" class="login-button" href="main.html">Giriş Yap</button>
 
             <a href="#" class="forgot-password">Şifremi Unuttum</a>
 
             <div class="signup-link">
-                Hesabınız yok mu? <a href="#" id="signupLink">Kayıt Ol</a>
+                Hesabınız yok mu? <a href="main.html" id="signupLink">Kayıt Ol</a>
             </div>
         </form>
     </div>
@@ -162,7 +162,7 @@
                     console.log("E-posta:", userData.email);
                     console.log("Şifre Hash:", userData.passwordHash);
 
-                    window.location.href = 'index.html';  // Ana sayfaya yönlendir
+                    window.location.href = 'main.html';  // Ana sayfaya yönlendir
                 } else {
                     alert('Geçersiz şifre!');
                     console.log("Şifre eşleşmedi, giriş başarısız.");

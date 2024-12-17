@@ -104,7 +104,7 @@
 
 <body>
     <div class="login-container">
-        <div class="logo"><i class="fas fa-laptop"></i> TechHub Elektronik</div>
+        <div class="logo"><i class="fas fa-laptop"></i> HOSGELDİNİZ </div>
 
         <form id="loginForm" class="login-form">
             <div class="input-group">
@@ -144,7 +144,7 @@
                 passwordHash: hashedPassword
             };
             localStorage.setItem(email, JSON.stringify(userData));
-            alert('Kayıt başarılı!');
+            alert('HOŞGELDİNİZ YENİ ÜYEMİZ');
         }
 
         // Giriş doğrulama ve kullanıcı verisini çekme
@@ -155,7 +155,7 @@
                 const hashedPassword = await hashPassword(password);
                 if (userData.passwordHash === hashedPassword) {
                     // Giriş başarılı
-                    alert('Giriş başarılı!');
+                    alert('ÜYEMİZ GİRİŞ YAPTI');
                     
                     // Kullanıcı bilgilerini konsola yazdırıyoruz
                     console.log("Giriş yapan kullanıcı bilgileri:");

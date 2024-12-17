@@ -115,90 +115,42 @@
                 <input type="password" id="password" placeholder="Şifreniz" required>
             </div>
 
-            <button type="submit" class="login-button" href="main.html">Giriş Yap</button>
+            <button type="submit" class="login-button">Giriş Yap</button>
 
             <a href="#" class="forgot-password">Şifremi Unuttum</a>
 
             <div class="signup-link">
-                Hesabınız yok mu? <a href="main.html" id="signupLink">Kayıt Ol</a>
+                Hesabınız yok mu? <a href="#" id="signupLink">Kayıt Ol</a>
             </div>
         </form>
     </div>
 
     <script>
-        // SHA-256 Hash Fonksiyonu
-        async function hashPassword(password) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(password);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            return hashHex;
-        }
-
-        // Kullanıcı bilgilerini yerel depolamaya kaydetme
-        async function saveUserToLocalStorage(email, password) {
-            const hashedPassword = await hashPassword(password);
-            const userData = {
-                email: email,
-                passwordHash: hashedPassword
-            };
-            localStorage.setItem(email, JSON.stringify(userData));
-            alert('HOŞGELDİNİZ YENİ ÜYEMİZ');
-        }
-
-        // Giriş doğrulama ve kullanıcı verisini çekme
-        async function validateLogin(email, password) {
-            const userData = JSON.parse(localStorage.getItem(email));  // E-posta ile kullanıcıyı al
-            if (userData) {
-                // Kullanıcının kaydını bulduk, şimdi şifreyi doğrulayalım
-                const hashedPassword = await hashPassword(password);
-                if (userData.passwordHash === hashedPassword) {
-                    // Giriş başarılı
-                    alert('ÜYEMİZ GİRİŞ YAPTI');
-                    
-                    // Kullanıcı bilgilerini konsola yazdırıyoruz
-                    console.log("Giriş yapan kullanıcı bilgileri:");
-                    console.log("E-posta:", userData.email);
-                    console.log("Şifre Hash:", userData.passwordHash);
-
-                    window.location.href = 'main.html';  // Ana sayfaya yönlendir
-                } else {
-                    alert('Geçersiz şifre!');
-                    console.log("Şifre eşleşmedi, giriş başarısız.");
-                }
-            } else {
-                alert('Kullanıcı bulunamadı!');
-                console.log("E-posta ile kullanıcı bulunamadı:", email);
-            }
-        }
-
-        // Kayıt Ol Event Listener
-        document.getElementById('signupLink').addEventListener('click', async function (e) {
+        // Kayıt Ol butonu için event listener
+        document.getElementById('signupLink').addEventListener('click', function(e) {
             e.preventDefault();
-
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
             if (email && password) {
-                await saveUserToLocalStorage(email, password);  // Kullanıcı kaydını yap
+                alert('HOŞGELDİNİZ YENİ ÜYEMİZ');
+                window.location.href = 'main.html';
             } else {
                 alert('Lütfen tüm alanları doldurunuz.');
             }
         });
 
-        // Giriş Formu Event Listener
-        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+        // Giriş formu için event listener
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
             if (email && password) {
-                await validateLogin(email, password);  // Giriş doğrulama işlemini yap
+                alert('GİRİŞ BAŞARILI');
+                window.location.href = 'main.html';
             } else {
                 alert('Lütfen tüm alanları doldurunuz.');
-                console.log("Eksik bilgi: E-posta veya şifre girilmedi");
             }
         });
     </script>
